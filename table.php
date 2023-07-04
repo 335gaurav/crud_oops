@@ -25,7 +25,8 @@ class Users
       return true;
     } else {
       return false;
-    }
+    } 
+    echo "new function";
   }
 }
 $user = new Users();
