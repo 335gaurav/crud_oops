@@ -4,10 +4,7 @@ include_once "./config.php";
 $user = new Users();
 
 if (isset($_POST['submit'])) {
-  // echo "yes"; die;
   $user->addRecord($_POST);
-// echo "<pre>"; print_r($user); echo "</pre>";
-  
 }
 
 ?>
@@ -43,7 +40,7 @@ if (isset($_POST['submit'])) {
 <body>
   <div class="container">
     <h1>Insert Form</h1>
-  <form action="#" method="post" align="center">
+  <form action="./table.php" method="post" align="center">
   <label for="name"> Name :</label>
   <input type="text" name="name" id="">
 
