@@ -1,27 +1,6 @@
 <?php
+include_once "./config.php";
 
-class Users
-{
-  private $conn;
-  function __construct()
-  {
-    $this->conn = mysqli_connect("localhost", "root", "", "oop");
-    if (mysqli_connect_error()) {
-      echo mysqli_connect_error();
-    }
-  }
-  public function addRecord($data)
-  {
-    // echo "<pre>"; print_r($data); die;
-    $query = "INSERT INTO `oops-table` (`name`, `class`, `section`, `gender`) VALUES ('" . $data['name']. "','" . $data['class'] . "', '" . $data['section'] . "', '" . $data['gender'] . "');";
-    $runQuery = mysqli_query($this->conn, $query);
-    if ($runQuery) {
-      echo "done";
-    } else {
-      echo mysqli_errno($this->conn);
-    }
-  }
-}
 $user = new Users();
 
 if (isset($_POST['submit'])) {

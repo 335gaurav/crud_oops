@@ -1,40 +1,14 @@
 <?php
-class Users
-{
-  private $conn;
-  function __construct()
-  {
-    $this->conn = mysqli_connect("localhost", "root", "", "oop");
-    if (mysqli_connect_error()) {
-      echo mysqli_connect_error();
-    }
-  }
-  function tableList()
-  {
-    $query = "SELECT * FROM `oops-table`";
-    $getQuery = mysqli_query($this->conn, $query);
-    while($data = mysqli_fetch_array($getQuery)){
-      echo "<pre>"; print_r($data); die;
-    }
-  }
-  function deleteData($id)
-  {
-    $query = "DELETE FROM `oops-table` WHERE `id` = '".$id."'";
-    $result = mysqli_query($this->conn, $query);
-    if($result){
-      return true;
-    } else {
-      return false;
-    } 
-    echo "new function";
-  }
-}
+include_once "./config.php";
+
 $user = new Users();
+
 $record = $user->tableList();
+
 if(isset($_GET['id'])){
   $del = $user->deleteData($_GET['id']);
   if($del){
-    header("Location : table.php");
+    header("Location: ./table.php");
   } else {
     echo $del;
   }
@@ -56,12 +30,17 @@ if(isset($_GET['id'])){
       text-align: center;
       padding: 10px;
     }
+
+    .btn{
+      margin: auto;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
     <h1 align="center">Data Table</h1>
+    <button><a href="./insert_form.php" class = "btn">Insert</a></button>
     <table align="center">
       <tr>
         <th>ID</th>
@@ -73,16 +52,16 @@ if(isset($_GET['id'])){
       </tr>
       <?php
             $id = "";
-          foreach($arr as $data){
+          foreach($record as $val){
               $id++;
           echo "<tr>
             <td> $id </td>
-            <td>" . $data['name'] . "</td>
-            <td>" . $data['class'] . "</td>
-            <td>" . $data['section'] . "</td>
-            <td>" . $data['gender'] .  "</td>
-            <td>" . '<a href="update.php?id=' . $data['id'] . '">Edit</a> 
-            <a href="table.php?id=' . $data['id'] . '">Delete</a>' .  "</td>
+            <td>" . $val['name'] . "</td>
+            <td>" . $val['class'] . "</td>
+            <td>" . $val['section'] . "</td>
+            <td>" . $val['gender'] .  "</td>
+            <td>" . '<a href="update.php?id=' . $val['id'] . '">Edit</a> 
+            <a href="table.php?id=' . $val['id'] . '">Delete</a>' .  "</td>
           </tr>";
           }
       ?>

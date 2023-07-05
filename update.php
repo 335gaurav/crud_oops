@@ -1,38 +1,9 @@
 <?php
-class Users
-{
-  private $conn;
-  function __construct()
-  {
-    $this->conn = mysqli_connect("localhost", "root", "", "oop");
-    if (mysqli_connect_error()) {
-      echo mysqli_connect_error();
-    }
-  }
-  function getFormData($id)
-  {
-    $query = "SELECT * FROM `oops-table` WHERE   `id` = ' " . $id . "' ";
-    $result = mysqli_query($this->conn, $query);
-    $getData = mysqli_fetch_array($result);
-    // echo "<pre>"; print_r($getData); die;
-    return $getData;
-  }
+include_once "./config.php";
 
-  function updateFormData($data, $id)
-  {
-    $query = "UPDATE `oops-table` SET `name`='" . $data['name'] . "',`class`='" . $data['class'] . "',`section`='" . $data['section'] . "',`gender`='" . $data['gender'] . "' WHERE  `id` = '" . $id . "'";
-    $runQuery = mysqli_query($this->conn, $query);
-    if ($runQuery) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-}
 $user = new Users();
 
 if (isset($_GET['id'])) {
-  // echo "yes";
   $editData = $user->getFormData($_GET['id']);
 
   if (isset($_POST["update"])) {
