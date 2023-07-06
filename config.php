@@ -35,11 +35,8 @@ class Users
   {
     $query = "SELECT * FROM `oops-table`";
     $response = $this->runQuery($query);
-    $arr = array();
-    while ($data = mysqli_fetch_assoc($response)) {
-      $arr[] = $data;
-    }
-    return $arr;
+    $getData = mysqli_fetch_all($response, MYSQLI_ASSOC);
+    return $getData;
   }
 
   function getFormData($id)
@@ -63,5 +60,14 @@ class Users
     $response = $this->runQuery($query);
     return $response;
   }
+
+  function searchData($search)
+  {
+    $query = "SELECT * FROM `oops-table` WHERE `name` like '%$search%' ";
+    $response = $this->runQuery($query);
+    //$rows = mysqli_num_rows($response);
+
+    $getData = mysqli_fetch_all($response, MYSQLI_ASSOC);
+    return $getData;
+  }
 }
-?>

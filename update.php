@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../lib/css/bootstrap.css">
   <title>Edit form</title>
   <style>
     form {
@@ -50,8 +50,8 @@ if (isset($_GET['id'])) {
 
 <body>
   <div class="container">
-    <h1>Insert Form</h1>
-    <form action="#" method="post" align="center">
+    <h1>Edit Form</h1>
+    <form action="#" method="post">
       <label for="name"> Name :</label>
       <input type="text" name="name" id="name" value="<?php echo $editData['name']; ?>">
 
